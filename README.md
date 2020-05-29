@@ -24,7 +24,15 @@ Simple Kubernetes starter template for FastAPI developers.
       ```
       $ curl http://localhost:5678
       {"detail":"Not Found"}
-      ```
+
+
+# Build Tips
+
+## Re-new deployment with the newly published image
+
+```
+$ kubectl set image -n sample deployment/sample-api sample-api=cloudeyes/sample-service`
+```
 
 # Debugging Tips
 
