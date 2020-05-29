@@ -31,7 +31,8 @@ spec:
         tier: sample-api
     spec:
       containers:
-      - image: cloudeyes/sample-service
+      - image: cloudeyes/sample-service:latest
+        imagePullPolicy: "Always"
         name: sample-api
         env:
         - name: ENV
