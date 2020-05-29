@@ -20,3 +20,4 @@ Simple Kubernetes starter template for FastAPI developers.
   - `debug.sh <command>` : Start a temporary container with the given command`
   - `DB_HOST=<ip or host> DB_TYPE=<default:mysql|pgsql> debug.sh python -m sample.dbtest` 
      : Start a temporary container for db test.
+    - e.g) `DB_HOST=10.152.183.22 ./debug.sh uvicorn sample.main:app`
