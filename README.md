@@ -1,7 +1,7 @@
-Kubernetes Start
-================
+Kubernetes Starter Project
+==========================
 
-The Kubernetes Starter Project for FastAPI developers.
+Simple Kubernetes starter template for FastAPI developers.
 
 - `build.sh`: Build docker image.
 - `push.sh` : Build & push docker image.
