@@ -1,0 +1,7 @@
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=sample
+- name: pgsql-pass
+  literals:
+  - password=sample
