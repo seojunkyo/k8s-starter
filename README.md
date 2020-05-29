@@ -28,11 +28,16 @@ Simple Kubernetes starter template for FastAPI developers.
 
 # Debugging Tips
 
-How to check network configuration at the running pod?
+How to check the network configuration at the running pod?
 
 Check the following scripts...
 
-```
+```bash
+$ # Cannot connect to the service.
+$ curl http://10.152.183.155:5678
+curl: (7) Failed to connect to 10.152.183.155 port 5678: Connection refused
+$
+$ # Something is wrong... Let's get digging about it.
 $ kubectl get pods -A
 NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
 ingress       nginx-ingress-microk8s-controller-bpq7l   1/1     Running   1          5h48m
@@ -40,10 +45,9 @@ kube-system   coredns-588fd544bf-zc7lj                  1/1     Running   2     
 sample        mysql-64f64cdf8-nn7bt                     1/1     Running   0          155m
 sample        pgsql-75f8f69bcf-477gl                    1/1     Running   0          156m
 sample        sample-api-5f67767bbf-s78tb               0/1     Error     4          4m58s
-
-(base) ~/project/k8s-starter/k8s$ curl http://10.152.183.155:5678
-curl: (7) Failed to connect to 10.152.183.155 port 5678: Connection refused
-(base) ~/project/k8s-starter/k8s$ kubectl logs -n sample sample-api-5f67767bbf-s78tb
+$
+$ # Error?! what happened?
+$ kubectl logs -n sample sample-api-5f67767bbf-s78tb
 Traceback (most recent call last):
   File "/usr/local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2345, in _wrap_pool_connect
     return fn()
@@ -55,7 +59,7 @@ Traceback (most recent call last):
     super(Connection, self).__init__(*args, **kwargs2)
 sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (2005, "Unknown MySQL server host 'mysql.sample.svc.cluster.local' (-3)")
 (Background on this error at: http://sqlalche.me/e/e3q8)
-
+$ # Host not found? let's check it on a nomral running pod in the same namespace.
 $ kubectl exec -it -n sample mysql-64f64cdf8-nn7bt -- /bin/bash
 root@mysql-64f64cdf8-nn7bt:/# exit
 exit
