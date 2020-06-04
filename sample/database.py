@@ -12,7 +12,7 @@ DB_USER = os.environ.get('DB_USER', 'sample')
 DB_PASS = os.environ.get('DB_PASS', 'sample')
 DB_NAME = os.environ.get('DB_NAME', 'sample')
 
-process = subprocess.Popen(["nslookup", hostname], stdout=subprocess.PIPE)
+process = subprocess.Popen(["nslookup", DB_HOST], stdout=subprocess.PIPE)
 output = process.communicate()[0].decode().split('\n')
 host_ip = output[-3:][0].split(': ')[-1]
 
