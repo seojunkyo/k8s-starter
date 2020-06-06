@@ -31,7 +31,7 @@ Simple Kubernetes starter template for FastAPI developers.
 ## Re-new deployment with the newly published image
 
 ```
-$ kubectl set image -n sample deployment/sample-api sample-api=cloudeyes/sample-service`
+$ kubectl set image -n sample deployment/sample-api sample-api=cloudeyes/sample-service
 ```
 
 # Debugging Tips
@@ -40,7 +40,7 @@ How to check the network configuration at the running pod?
 
 Check the following scripts...
 
-```bash
+```bashloudeyes
 $ # Cannot connect to the service.
 $ curl http://10.152.183.155:5678
 curl: (7) Failed to connect to 10.152.183.155 port 5678: Connection refused
