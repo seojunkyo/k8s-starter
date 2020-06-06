@@ -12,14 +12,15 @@ DB_USER = os.environ.get('DB_USER', 'sample')
 DB_PASS = os.environ.get('DB_PASS', 'sample')
 DB_NAME = os.environ.get('DB_NAME', 'sample')
 
-process = subprocess.Popen(["nslookup", DB_HOST], stdout=subprocess.PIPE)
-output = process.communicate()[0].decode().split('\n')
-host_ip = output[-3:][0].split(': ')[-1]
+if DB_HOST[0] > '9':
+    process = subprocess.Popen(["nslookup", DB_HOST], stdout=subprocess.PIPE)
+    output = process.communicate()[0].decode().split('\n')
+    DB_HOST = output[-3:][0].split(': ')[-1]
 
 DATABASE_URL = {
     'DEV': 'sqlite:///./dev.db',
     'TEST': 'sqlite:///./test.db',
-    'PROD': f'{DB_TYPE}://{DB_USER}:{DB_PASS}@{host_ip}/{DB_NAME}'
+    'PROD': f'{DB_TYPE}://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}'
 }[ENV]
 
 connect_args = {
