@@ -31,7 +31,7 @@ spec:
         tier: sample-api
     spec:
       containers:
-      - image: cloudeyes/sample-service:latest
+      - image: byeeworld/sample-service:latest
         imagePullPolicy: "Always"
         name: sample-api
         env:
@@ -39,6 +39,7 @@ spec:
           value: PROD
         - name: DB_HOST
           value: mysql.sample.svc.cluster.local
+          #value: 10.152.183.66
         - name: DB_TYPE
           value: mysql
         - name: DB_NAME
